@@ -23,21 +23,21 @@ C'est approximativement tout ce que j'ai remarqué de différent jusque maintena
 
 # Par où j'ai commencé ? 
 
-Je pense que tout le monde le sait : les technologies évoluent vite, plus encore les frameworks React & Cie (nous pourrions parler de Next.JS 14 avec App Router dont ChatGPT 4 n'en connaît pas l'existence dans un autre article). 
-Expo ne fait pas exception avec ses versions de navigation par exemple. J'ai commencé un tutoriel Youtube de 2023 (nous sommes en 2024) avec une petite rassurance, après 15 minutes d'explications très utiles pour comprendre React Native, 
-Je vois que la documentation utilisée n'est plus la même, je tente quand même (en me doutant des résultats). Et paf, la console est toute rouge et me demande de me mettre à jour.
+Je pense que tout le monde le sait : les technologies **évoluent** vite, plus encore les **frameworks** React & Cie (nous pourrions parler de **Next.JS** 14 avec App Router dont ChatGPT 4 n'en connaît toujours **pas** l'existence dans un _autre_ article). 
+Expo ne fait **pas** exception avec ses versions de navigation par exemple. J'ai commencé un **tutoriel** Youtube de **2023** (nous sommes en 2024) avec rassurance, après 15 minutes d'explications très **utiles** pour comprendre React Native, 
+Je m'aperçois que la **documentation** utilisée n'est plus la même, je tente quand même (en me doutant des résultats). Et paf, la console est toute **rouge** et me demande de me mettre à **jour**.
 
-J'ai donc fais un tour dans la documentation (actuelle !), surprise : un tutoriel complet pour commencer le développement mobile : https://docs.expo.dev/tutorial/introduction/
-Je fais le tutoriel en quelques heures (avec des petites modifications te souviens tu les MaterialUI ?). 
-Puis je cherche à me lancer seul pour faire une petite application. 
+J'ai donc fais un tour dans la **documentation** (actuelle !), surprise : un **tutoriel** complet pour commencer le développement mobile : https://docs.expo.dev/tutorial/introduction/
+Je fais le tutoriel en quelques heures (avec des petites modifications te souviens tu les _MaterialUI_ ?). 
+Puis je cherche à me lancer **seul** pour faire une _petite_ application. 
 
-Nouvelle surprise : je suis perdu, il y a plusieurs commandes pour construire le projet de base et je ne trouve pas comment naviguer entre les écrans....
+**Nouvelle surprise** : je suis **perdu**, il y a **plusieurs** commandes pour construire le projet de base et je ne trouve **pas** comment naviguer entre les écrans....
 D'où l'allusion à la navigation dans les différences...
 
 Je me pars donc à la quête d'aide
 
 # Commander des Pizzas ? 
-Il est donc primordial de choisir la vidéo la plus récente possible : il y a un mois, une vidéo de 8 heures pour construire une application de commande sort. 
+Il est donc primordial de choisir la vidéo la plus **récente** possible : _il y a un mois_, une vidéo de 8 heures pour construire une application de commande sort. 
 J'ai trouvé avec qui je passerais mes prochaines heures pour coder !! En plus il utilise Supabase et je voulais tester.
 
 
