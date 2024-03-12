@@ -40,4 +40,42 @@ Je me pars donc à la quête d'aide
 Il est donc primordial de choisir la vidéo la plus **récente** possible : _il y a un mois_, une vidéo de 8 heures pour construire une application de commande sort. 
 J'ai trouvé avec qui je passerais mes prochaines heures pour coder !! En plus il utilise Supabase et je voulais tester.
 
+J'ai commencé et je me suis arrêté à 54 minutes, de quoi bien avancer !
+Je ne les ai même pas vu passer tellement les **explications** sont **claires** (même en vitesse _x2_) et le code est **simple**.
+
+Le _youtubeur_, bien que (_seulement_) 45k vues, nous met a disposition un **tableau** _notion_ avec absolument toutes les étapes claires et simples. 
+
+Je suis vraiment **impressionné** par la **qualité** de travail des développeurs sur youtube, cette nouvelle decouverte ne fait qu'**améliorer** mon impression !
+
+Je vais donc diviser les sections par _commit_, comme il a d'ailleurs fais sur son tableau. 
+
+## Init
+L'initialisation d'un projet peut-être la plus simple possible en fonction des technologies utilisées, ou devenir la plus longue à mettre en place pour d'autres. Sachant mon vécu avec React Native et les différentes documentations, je ne me rassure pas jusqu'à voir ce qu'il fait exactement, puis j'exécute. 
+
+Il rappelle le besoin d'avoir node sur sa machine. 
+
+Et quelle est la (nouvelle) surprise, des commandes que je faisais sans rélféchir, trouvent au final des options : 
+`npx create-expo-app@latest FoodOrdering -t`
+
+le `-t` nous propose de choisir un template entre : 
+- Blank
+- Blank (TypeScript)
+- Navigation (TypeScript)
+- Blank (Bare)
+
+Voyez-vous où je veux en venir ? Le sourire se dessine-t-il sur votre visage ? 
+En tous cas c'est ce qu'il m'est arrivé. 
+Enfin on me propose la navigation !
+Ce n'est pas tout, j'ai homis de parler d'un autre problème lors de ma première découverte du React Native, enfin d'expo plutôt : le JavaScript
+Le projet était en JavaScript, enfin non les fichiers étaient en format `.js` mais tout le contenu des fichiers soulignait rouge. Je pensais donc à un problème de VSCode qui ne détecte pas tout, mais c'est visuellement agaçant de lire tout souligné en rouge. Je vous épargne mes péripéties. 
+
+_Pourquoi utiliser TypeScript ?_ 
+Par soucis de **qualité** de développement, un professeur me l'a bien expliqué : **typer** enlève facilement **50%** des **tests** à faire après. TypeScript est **principalement** venu compléter JavaScript pour cela. Et bien qu'à chaque **déploiement** je me retrouve à devoir tout typer, et qu'il m'arrive de ne pas comprendre un _type_, je préfère.
+
+Egalement ce projet avait bien plus de dossier que ce que j'avais vu auparavant, le _youtubeur_ nous a donc recommandé de rassembler les dossiers utiles au développement dans un dossier _src_ (_assets_ pour les datas, _app_ pour les pages, _components_ pour les composants). 
+
+
+
+
+
 
