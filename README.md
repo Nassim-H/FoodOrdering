@@ -72,10 +72,56 @@ Le projet était en JavaScript, enfin non les fichiers étaient en format `.js` 
 _Pourquoi utiliser TypeScript ?_ 
 Par soucis de **qualité** de développement, un professeur me l'a bien expliqué : **typer** enlève facilement **50%** des **tests** à faire après. TypeScript est **principalement** venu compléter JavaScript pour cela. Et bien qu'à chaque **déploiement** je me retrouve à devoir tout typer, et qu'il m'arrive de ne pas comprendre un _type_, je préfère.
 
-Egalement ce projet avait bien plus de dossier que ce que j'avais vu auparavant, le _youtubeur_ nous a donc recommandé de rassembler les dossiers utiles au développement dans un dossier _src_ (_assets_ pour les datas, _app_ pour les pages, _components_ pour les composants). 
+Egalement ce projet avait bien plus de dossier que ce que j'avais vu auparavant, le _youtubeur_ nous a donc recommandé de rassembler les dossiers utiles au développement dans un dossier _src_ (_constants_ pour les constantes, _app_ pour les pages, _components_ pour les composants). 
 
+## Building UI
+Oui c'est un terme joli et pourtant assez vague, mais j'ai préféré reprendre l'intitulé du _commit_. C'est seulement découvrir les composants React Native, notamment avec les différences cités précédement : 
+Les composants _View_ et _Text_ ainsi que leur propriétés tel que style
+Le composant _Stylesheet_ dans une variable à part pour la structure lisible de la page. Bref pas besoin de rester longtemps ici, il est utile de rappeler qu'au début nous utilisons un fichier data donné par le _youtubeur_ pour afficher des données. Le dossier _assets_ comprend donc les fichiers de données.
 
+En gros c'est ce que je disais plus haut, on utilise le JSX pour le rendu. 
 
+## Premier composant personnalisé
+Ca reprends exactement le fonctionnement de React, on peut écrire un composant (avec _function_ ou _const_) et l'**exporter**, ajouter des _props_ (il faudra bien _typer_, j'ai retenu la leçon !).
+
+Oui c'est court mais c'est vraiment simple ici, c'est du 100% React : faire des composants, les exporter pour les utiliser ailleurs pour le rendu. 
+
+## Typer 
+Pour typer j'ai d'abord ajouter le fichier _types.ts_ dans le dossier _src_ (donné par le _youtubeur_) qui contient tout simplement les types des données que l'on va utiliser dans le projet, en les lisant j'imagine assez bien la base de données derrière (hâte de te rencontrer Supabase). Puis on import le type que l'on veut dans notre composant et le rajoute dans les props. 
+
+Une chose que j'ai apprise ici c'est ajouter un defaultData dans une variable qui peut être nulle : 
+`export const defaultPizza = "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/food/peperoni.png"
+`
+`        source={{ uri: product.image || defaultPizza}} 
+`
+
+Pour finir, j'ai enfin compris la configuration des alias personnalisé (@/components) en est un !
+Cela permet tout simplement de déplacer des fichiers sans se soucier des imports. 
+Pour cela il faut aller dans le fichier _app.json_ : 
+`{
+  "expo": {
+    "experiments": {
+      "tsconfigPaths": true
+    }
+  }
+}`
+
+Puis dans le fichier _tsconfig.json_
+`{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@assets/*": ["assets/*"]
+    }
+  }
+}`
+
+Très intéressant ! 
+
+## FlatList
+Un nouveau composant qui n'est pas des moindre : scroller 
 
 
 
