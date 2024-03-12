@@ -121,7 +121,15 @@ Puis dans le fichier _tsconfig.json_
 Très intéressant ! 
 
 ## FlatList
-Un nouveau composant qui n'est pas des moindre : scroller 
+Un nouveau _composant_ qui n'est pas des moindre : _scroller_.  
 
+`<FlatList 
+      data={products} 
+      renderItem={({item }) => <ProductListItem product={item} />} -> parcours les produits 
+      numColumns={2} -> réalise des colonnes
+      contentContainerStyle={{gap: 10, padding: 10}} -> style de chacun
+      columnWrapperStyle={{gap: 10}} -> style horizontal je crois
+/>`
 
+Jusque là j'ai vraiment quelque chose de beau à voir bien que simple. C'est vraiment pro. 
 
