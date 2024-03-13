@@ -163,3 +163,13 @@ On a cependant perdu quelque chose si vous avez bien suivi : le fichier _index.t
 Problème : cela **ajoute** un bouton dans la barre en bas (compris ?), il faut donc le cacher en rajoutant une ligne dans le __layout.tsx_ de _(tabs)_ : 
 `        <Tabs.Screen name='index' options={{ href: null }} />
 `
+Ne pas oublier de mettre à jour le _Link_ précédent car le menu ne se trouve plus dans le dossier source _(tabs)_ mais dans _menu_.
+
+Dans les options de Tabs.Screen (_layout.tsx) on peut modifier les options pour par exemple cacher le headerqui vient de s'ajouter, changer les titres comme cela : 
+`<Stack>
+   <Stack.Screen name="index" options={{title: "Menu"}} />
+</Stack>;`
+
+On peut aussi directement le faire dans un fichier précis (comme _[id].tsx_) : 
+`
+            <Stack.Screen options={{title: "Details: " + id}} />`
