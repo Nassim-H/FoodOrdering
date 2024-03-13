@@ -148,7 +148,7 @@ Pour que cela fonctionne, le fichier que l'on crée se nomme `[id]`, et pour uti
 
 Le tour est joué !
 
-## Stack 
+## Screens (et plus page...)
 
 Pour continuer, nous souhaitons que l'écran de détails doit être au **même** endroit que la liste. Pour cela il faut les **regrouper** dans un **dossier**. Ici, _menu_. 
 Nous rajoutons donc le fichier _[id].tsx_ ainsi que _index.tsx_ de _(tabs)_. Cela crée un nouveau bouton dans le menu (en bas). 
