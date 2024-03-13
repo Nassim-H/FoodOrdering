@@ -170,6 +170,11 @@ Dans les options de Tabs.Screen (_layout.tsx) on peut modifier les options pour 
    <Stack.Screen name="index" options={{title: "Menu"}} />
 </Stack>;`
 
+le name est ce que l'on vise (url -> dossier car c'est _nested_)
+
 On peut aussi directement le faire dans un fichier précis (comme _[id].tsx_) : 
 `
             <Stack.Screen options={{title: "Details: " + id}} />`
+Pas besoin du name car on est déjà dans le fichier. 
+
+C'est vraiment un gros chapitre important, je pense que **beaucoup** le seront, mais lui est celui que je cherchais pour comprendre mieux la **navigation**. 
