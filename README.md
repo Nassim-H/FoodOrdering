@@ -133,3 +133,33 @@ Un nouveau _composant_ qui n'est pas des moindre : _scroller_.
 
 Jusque là j'ai vraiment quelque chose de beau à voir bien que simple. C'est vraiment pro. 
 
+
+## Link
+Pour pouvoir cliquer sur les pizzas et aller sur la page de détails du produit, il faut évidemment ajouter un **nouveau** fichier mais aussi **changer** la structure du composant _ProductItemList_ qui avait initialement le composant _View_ et lui rajouter un lien, mais également le rendre cliquable. 
+Il faut donc wrapper le tout dans le composant _Link_ de _expo-router_, lui ajouter un _href_ mais aussi _asChild_ afin de garder le style que l'on avait mis. 
+On enlève également le _View_ pour mettre à sa place _Pressable_ qui garde le style du container.
+
+Vu qu'on souhaite cliquer sur une pizza et pas une autre, on doit adapter l'url : 
+`      <Link href={`../menu/${product.id}`} asChild>
+`
+Pour que cela fonctionne, le fichier que l'on crée se nomme `[id]`, et pour utiliser l'id il faut rajouter une _const_ : 
+`    const { id } = useLocalSearchParams();
+`
+
+Le tour est joué !
+
+## Stack 
+
+Pour continuer, nous souhaitons que l'écran de détails doit être au **même** endroit que la liste. Pour cela il faut les **regrouper** dans un **dossier**. Ici, _menu_. 
+Nous rajoutons donc le fichier _[id].tsx_ ainsi que _index.tsx_ de _(tabs)_. Cela crée un nouveau bouton dans le menu (en bas). 
+
+Nous ajoutons donc un fichier __layout.tsx_ qui va wrapper les fichiers du dossier. 
+
+Dedans on y retourne un... Stack. 
+
+Pour que le menu reste le même il faut faire attention au name du Tabs.Screen afin qu'il soit celui du nom du dossier. 
+
+On a cependant perdu quelque chose si vous avez bien suivi : le fichier _index.tsx_ de _(tabs)_, il faut donc en **refaire** un avec un _Redirect_ dans le _/menu/_ (ce qu'on vient de faire !). 
+Problème : cela **ajoute** un bouton dans la barre en bas (compris ?), il faut donc le cacher en rajoutant une ligne dans le __layout.tsx_ de _(tabs)_ : 
+`        <Tabs.Screen name='index' options={{ href: null }} />
+`
