@@ -1,6 +1,6 @@
 import { defaultPizza } from '@/components/ProductListItem';
 import products from '@assets/data/products';
-import { Stack, useLocalSearchParams } from 'expo-router';
+import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { Text, View , Image, StyleSheet, Pressable} from 'react-native';
 import { useState } from 'react';
 import { getBackgroundColorAsync } from 'expo-system-ui';
@@ -21,13 +21,15 @@ const ProductDetails = () => {
 
     const {addItem} = useCart();
 
+
+    const router = useRouter();
+
     const addToCart = () => {
         if (!product) {
-            console.log('Product not found');
             return;
         }
         addItem(product, selectedSize);
-        console.log('added to cart', addItem);
+        router.push('/cart');
     }
 
     if (!product) {

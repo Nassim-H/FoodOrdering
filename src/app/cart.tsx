@@ -2,14 +2,15 @@ import { StatusBar } from 'expo-status-bar';
 import { View, Text, Platform, FlatList } from 'react-native';
 import { useCart } from '@/providers/CartProvider';
 import CartListItem  from '../components/CartListItem';
+import { Stack } from 'expo-router';
 
 
 const Cart = () => {
     const { items } = useCart();
-    console.log('cart items', items);
     
     return (
         <View>
+            <Stack.Screen options={{title: "My Cart"}} />
             <FlatList 
                 data={items} 
                 renderItem={({ item }) => <CartListItem cartItem={item}/>} 
