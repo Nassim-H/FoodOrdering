@@ -5,26 +5,36 @@ import { Text, View , Image, StyleSheet, Pressable} from 'react-native';
 import { useState } from 'react';
 import { getBackgroundColorAsync } from 'expo-system-ui';
 import Button from '@/components/Button';
+import { useCart } from '@/providers/CartProvider';
+import { PizzaSize } from '@/types';
 
-
-const sizes = ["S", "M", "L", "XL"];
+const sizes: PizzaSize[] = ["S", "M", "L", "XL"];
 
 
 const ProductDetails = () => {
 
     const { id } = useLocalSearchParams();
     
-    const [selectedSize, setSelectSize] = useState('M');
+    const [selectedSize, setSelectSize] = useState<PizzaSize>('M');
 
     const product = products.find((p) => p.id.toString() === id);
+
+    const {addItem} = useCart();
+
+    const addToCart = () => {
+        if (!product) {
+            console.log('Product not found');
+            return;
+        }
+        addItem(product, selectedSize);
+        console.log('added to cart', addItem);
+    }
 
     if (!product) {
         return <Text>Product not found</Text>
     }
 
-    const addToCart = () => {
-        console.warn('Add to cart');
-    }
+    
 
 
     return (
@@ -54,7 +64,7 @@ const ProductDetails = () => {
                 {product.price}€
             </Text>
 
-                <Button text="Add to cart" onPress={() => {addToCart()}} />
+                <Button text="Add to cart !" onPress={() => {addToCart()}} />
 
         </View> 
     )
