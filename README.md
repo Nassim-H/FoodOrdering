@@ -178,3 +178,55 @@ On peut aussi directement le faire dans un fichier précis (comme _[id].tsx_) :
 Pas besoin du name car on est déjà dans le fichier. 
 
 C'est vraiment un gros chapitre important, je pense que **beaucoup** le seront, mais lui est celui que je cherchais pour comprendre mieux la **navigation**. 
+
+## Provider
+C'est un très gros morceau (encore !) mais très intéressant et vous verrez le lien avec le précédent chapitre. 
+
+J'ai déjà utilisé des providers dans un autre tutoriel, sans chercher à comprendre, sans vraiment comprendre d'ailleurs. 
+
+Le contexte pour commander des pizzas : 
+Après avoir mis en place la navigation, il faut faire la page produit avec le prix, les tailles et le bouton ajouter au panier bien sûr. Tout cela se trouve donc dans le fichier _[id].tsx_ car chaque produit est différent, mais la page reste la même ! Rentrons plus en détail sur son fonctionnement avant de passer à la suite.
+
+### [id].tsx
+Ce fichier est un nouvel écran qui doit afficher les détails d'un produit. Mais avant cela il faut comprendre les premiers écrans : 
+
+#### menu/index.tsx
+
+Il faut bien s'imaginer la page principale avec la grille de pizzas (menu/index.tsx) qui est un FlatList car on peut scroller. Ce qu'on scrolle sont les datas dans le dossier assets (products). le renderItem est en fait le rendu de chaque data, ici on appelle un autre composant en donnant en props l'item (qui est une pizza je rappelle). On va aller dans le composant juste après. 
+Ensuite on a le nombre de colonnes (numColumns), le style du container (contentContainerStyle) et le style des colonnes (columnWrapperStyle). Pour le fun il y a aussi l'option de scroll horizontal !. Bref il faut faire un tour sur la [documentation](https://reactnative.dev/docs/flatlist?language=typescript) pour tout retrouver;
+
+#### components/ProductListItem
+
+C'est le composant qui représente chaque item de l'écran principal (grille de pizzas). Ce qu'on veut c'est voir à quoi ressemble chaque pizza, son nom et son prix pour faire attention à son porte-monnaie ! Le nom et le prix sont dans des [Text](https://reactnative.dev/docs/text) donc pas très difficile. Par contre le composant [Image](https://reactnative.dev/docs/image) m'intéresse vraiment. Il contient la source `source={{ uri: product.image || defaultPizza}}` avec une option très intéressante : l'affichae d'une iamge par défaut : `export const defaultPizza = "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/food/peperoni.png"` qu'on définit bien en dehors du composant `ProductListItem`. On a ensuite le style qui est souvent le même pour toutes les images : `width: '100%',
+      aspectRatio: 1`. On veut prendre toute la largeur du parent et l'_aspectRatio_ égalise la largeur et la hauteur (donc forme un carré). On a ensuite dans le composant _Image_ la propriété _reziseMode_ qui maintient les dimensions de l'image.
+
+Je n'ai pas parlé du plus important dans ce composant : Il faut pouvoir cliquer dessus (et donc être redirigé...). 
+On enveloppe donc les _Text_ et _Image_ dans [_Pressable_](https://reactnative.dev/docs/pressable) qui est nouveau selon la documentation React Native ! Je vous conseille vivement d'aller y faire un tour, cette fois vous ne serez pas déçu ! Il y a des propriétés vraiment intéressantes ! Dans ce projet (pour l'instant !) on n'utilise pas de propriété, ce n'est pas lui qui va rediriger vers le fameux écran de produit (que nous avons trop rapidement délaissé...). 
+
+C'est le composant [_Link_}(https://docs.expo.dev/router/navigating-pages/) de _expo router_ qui va faire le travail. Pour rappel il y a deux différentes méthodes de navigation, la classique est [React Navigation](https://reactnavigation.org/docs/link/), sa documentation est plus complète oui, je devrais plus m'y pencher. Celle que nous utilisons dans ce projet est _expo router_. Je ne vais pas rentrer dans les différences des deux (moi-même je ne sais pas encore). Nous y reviendrons peut-être une autre fois. 
+Dans le _Link_ on a donc `<Link href={`../menu/${product.id}`} asChild>`. Vous voyez où nous allons ? 
+Il y a en effet avant le composant la déclaration du type `type ProductListItemProps = {
+    product : Product}` et son ajout dans le composant : `const ProductListItem = ({ product }: ProductListItemProps) =>`
+Enfin, le _asChild_ permet d'adopter le style de _Pressable_ qui est l'enfant de _Link_.
+
+
+#### [id].tsx
+
+Nous y (re)voilà enfin, il fallait bien commencer doucement avant d'expliquer 100 lignes de code. Je n'ai pas encore l'habitude !
+Pourquoi le faire si cela n'est ni dans mes habitudes ni rapide (c'est long d'écrire, je devrais refaire des exercices de dactylograhpie) ?
+Pour mieux comprendre et maîtriser le langage et le _framework_. Je ressens déjà une clarté presque sans pareil après l'explication des premiers composants.
+
+On va carrément faire autrement pour cette fois, je vais expliquer par ligne comme cela c'est plus simple de suivre. 
+1. `const sizes: PizzaSize[] = ["S", "M", "L", "XL"];`
+   On déclare un tableau de tailles (pour les pizzas !) et on le **type** (le fichier types.tsx partagé par le _youtuber_). Le _typer_ permet de ne pas mettre n'importe quoi. C'est pro hein. On fait donc cela en dehors du composant (comme vu précédemment).
+2. `const ProductDetails = () => {`
+   On rentre dans le dur, quand je dis _composant_ c'est très souvent des composants que je développe, mais ce nom porte à confusion car il y a les _composants_ natifs de React que l'on utilise (comme _Pressable_...). Je parle des deux car les composants natifs sont essentiels, ils sont en fait dans les composants que l'on développe.
+
+3. `const { id } = useLocalSearchParams();`
+    Première variable déclarée : celle qui nous permet de prendre l'_id_ **exact** représentant la pizza sur laquelle on a cliqué tout à l'heure (en cherchant la moins chère). Le tour est donc joué en récupérant l'id on récupère tous les détails du produit.
+
+4. `const [selectedSize, setSelectSize] = useState<PizzaSize>('M');`
+   On utilise enfin des _hooks_. La force de React ! Commençons donc par expliquer ce qu'est un hook selon mes propres mots pour tester mes connaissances : _hook_ signifie état en français, ça permet tout simplement de gérer l'état d'éléments dans le composant. D'où les deux variables _selectedSize_ et _**set**SelectedSize_ pour changer la taille. Il y a pleins de _hooks **natifs**_ comme celui là (_useState_) mais également _useRef_, _useEffect_... Le truc plutôt nouveau pour moi est surtout la conception de _hook_ **personnalisé**, c'est pour bientôt ne vous inquietez pas !
+C'est clair ? Maintenant on va aller vérifier sur internet et ajouter ce la clarté. En regardant la documentation, je me rappelle mes débuts dans React (il y a de cela 6 mois en cours de React). Je ne comprenais absolument rien à la [documentation React](https://fr.legacy.reactjs.org/docs/hooks-overview.html#:~:text=Les%20Hooks%20sont%20des%20fonctions,d%27utiliser%20React%20sans%20classes.).
+Les hooks (après la version 16.8) remplacent les _class_. Cela permet de se brancher sur le cycle de vie de React. Je trouve vraiment les ressources internet pas assez claires cpour définir les hooks, je vais donc demander à mon ami. Il répète la même chose, sa prouve qu'il ne prend pas ses informations de sa tête ! Les _hooks_ permettent d'être réutilisés facilement.
+
